@@ -5,7 +5,7 @@ function App() {
   const [length, setLength] = useState(8)
   const [numAllowed, setNumAllowed] = useState(false)
   const [chAllowed, setChAllowed] = useState(false)
-  const [password, setPassword] = useState("fsdfdsf")
+  const [password, setPassword] = useState("")
 
   
 
@@ -17,20 +17,20 @@ function App() {
     if (chAllowed) { characters = characters + "!@#$%^&*-+" }
 
     for (let i = 0; i <= length-1; i++) {
-      let element = Math.floor((Math.random() * characters.length) + 1)
+      let element = Math.floor((Math.random() * characters.length) + 1)    //to select the index for pass
       pass += characters.charAt(element);
 
     }
-    setPassword(pass);
+    setPassword(pass);                                                    
   }, [length, numAllowed, chAllowed, setPassword])
 
 
   useEffect(() => {
     genPassword()
-  }, [length, numAllowed, chAllowed, genPassword])
+  }, [length, numAllowed, chAllowed, genPassword])                          
 
   const copyToCB = useCallback(() => {
-    window.navigator.clipboard.writeText(password)
+    window.navigator.clipboard.writeText(password)                //to copy password
   },
 [password])
 
